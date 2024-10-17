@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.move": "move",
+        "stdio.h": "c"
+    }
+}
