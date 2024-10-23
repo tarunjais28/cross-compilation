@@ -1,31 +1,8 @@
-#[link(name = "build.c")]
-extern "C" {
-    fn greet();
-    fn add(a: i32, b: i32) -> i32;
-}
+mod c;
+mod cpp;
+mod structs;
 
-#[repr(C)] // Ensure memory layout compatibility
-struct Point {
-    x: i32,
-    y: i32,
-}
-
-#[link(name = "build.c")]
-extern "C" {
-    fn get_sum(point: *mut Point) -> i32;
-}
-
-#[repr(C)]
-struct Points {
-    _unused: [u8; 0], // Avoid Rust trying to manage the struct's memory
-}
-
-#[link(name = "build.cpp")]
-extern "C" {
-    fn create_point(x: i32, y: i32) -> *mut Point;
-    fn display_point(point: *mut Point);
-    fn destroy_point(point: *mut Point);
-}
+use crate::{c::*, cpp::*, structs::*};
 
 fn main() {
     unsafe {
@@ -40,8 +17,8 @@ fn main() {
     println!("sum value from C: {}", x_value);
 
     unsafe {
-        let point = create_point(10, 20);  // Create a C++ object
-        display_point(point);              // Call C++ method
-        destroy_point(point);              // Free the C++ object
+        let point = create_point(10, 20); // Create a C++ object
+        display_point(point); // Call C++ method
+        destroy_point(point); // Free the C++ object
     }
 }
