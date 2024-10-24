@@ -20,10 +20,22 @@ jobs:
       run: cargo fmt
       working-directory: ./rust-c
 
-    - name: Build  rust-c
+    - name: Build rust-c
       run: cargo build
       working-directory: ./rust-c
       
     - name: Run tests rust-c
       run: cargo test
       working-directory: ./rust-c
+
+    - name: Lint rust-python
+      run: cargo fmt
+      working-directory: ./rust-python
+
+    - name: Build rust-python
+      run: cargo build
+      working-directory: ./rust-python
+      
+    - name: Run tests rust-python
+      run: cargo test
+      working-directory: ./rust-python

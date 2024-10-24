@@ -1,5 +1,6 @@
 use super::*;
 
+#[allow(unused)]
 #[repr(C)]
 pub struct Points {
     _unused: [u8; 0], // Avoid Rust trying to manage the struct's memory
